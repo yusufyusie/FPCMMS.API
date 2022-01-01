@@ -11,15 +11,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{58A8AC29-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B36A221F-4998-4CE4-AD1F-09C16B57C0CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPCMMS.Application", "FPCMMS.Application\FPCMMS.Application.csproj", "{AD71257F-4BF6-4ADD-B09A-1174D08C9A52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FPCMMS.Application", "FPCMMS.Application\FPCMMS.Application.csproj", "{AD71257F-4BF6-4ADD-B09A-1174D08C9A52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPCMMS.Domain", "FPCMMS.Domain\FPCMMS.Domain.csproj", "{2B365B27-6158-4030-8EE4-7241FEE0BC59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FPCMMS.Domain", "FPCMMS.Domain\FPCMMS.Domain.csproj", "{2B365B27-6158-4030-8EE4-7241FEE0BC59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPCMMS.Infrastructure.Identity", "FPCMMS.Infrastructure.Identity\FPCMMS.Infrastructure.Identity.csproj", "{FF397E39-3D3F-4E28-A261-204E86586F75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FPCMMS.Infrastructure.Identity", "FPCMMS.Infrastructure.Identity\FPCMMS.Infrastructure.Identity.csproj", "{FF397E39-3D3F-4E28-A261-204E86586F75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPCMMS.Infrastructure.Persistence", "FPCMMS.Infrastructure.Persistence\FPCMMS.Infrastructure.Persistence.csproj", "{FCE0EC18-3E23-472F-B757-C86E156177E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FPCMMS.Infrastructure.Persistence", "FPCMMS.Infrastructure.Persistence\FPCMMS.Infrastructure.Persistence.csproj", "{FCE0EC18-3E23-472F-B757-C86E156177E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPCMMS.API", "FPCMMS.API\FPCMMS.API.csproj", "{C36F0753-3C54-4F11-81EF-D20BADC22D67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FPCMMS.API", "FPCMMS.API\FPCMMS.API.csproj", "{C36F0753-3C54-4F11-81EF-D20BADC22D67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D243408A-B4C0-4BC8-9B67-D80B1C51FD6A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

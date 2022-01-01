@@ -53,7 +53,7 @@ namespace FPCMMS.Infrastructure.Identity.Services
             {
                 Id = _user.Id,
                 Token = new JwtSecurityTokenHandler().WriteToken(tokenOptions),
-                Email = _user.Email,
+                Country = _user.Country,
                 UserName = _user.UserName,
                 Expiration = tokenOptions.ValidTo
             };
@@ -61,7 +61,7 @@ namespace FPCMMS.Infrastructure.Identity.Services
             return response;
         }
         //TODO static method
-        private SigningCredentials GetSigningCredentials()
+        private static SigningCredentials GetSigningCredentials()
         {
             var key = Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("SECRET"));
             var secret = new SymmetricSecurityKey(key);
@@ -73,7 +73,12 @@ namespace FPCMMS.Infrastructure.Identity.Services
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, _user.UserName)
+                new Claim(ClaimTypes.Name, _user.UserName),
+                new Claim("fullName", _user.FirstName + " " + _user.LastName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                //new Claim(JwtRegisteredClaimNames.Aud, _configuration["Jwt:Audience"]),
+                //new Claim(JwtRegisteredClaimNames.Iss, _configuration["Jwt:Issuer"]),
+                new Claim("uid", _user.Id)
             };
 
             var roles = await _userManager.GetRolesAsync(_user);
@@ -99,6 +104,12 @@ namespace FPCMMS.Infrastructure.Identity.Services
             );
 
             return tokenOptions;
+        }
+        public async Task<SignInResult> Login(UserForAuthenticationDto user)
+        {
+            _user = await _userManager.FindByNameAsync(user.UserName);
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, true);
+            return result;
         }
     }
 }

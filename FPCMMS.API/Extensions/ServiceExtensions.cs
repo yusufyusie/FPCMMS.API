@@ -1,13 +1,20 @@
-﻿using FPCMMS.Application.Contracts;
+﻿using FPCMMS.API.Middlewares;
+using FPCMMS.Application.Contracts;
+using FPCMMS.Application.Contracts.Persistence;
+using FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon;
 using FPCMMS.Application.Services;
 using FPCMMS.Infrastructure.Identity.Contexts;
 using FPCMMS.Infrastructure.Identity.Models;
 using FPCMMS.Infrastructure.Persistence.Contexts;
+using FPCMMS.Infrastructure.Persistence.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System.Reflection;
 using System.Text;
@@ -31,26 +38,84 @@ namespace FPCMMS.API.Extensions
            });
         public static void ConfigureLoggerService(this IServiceCollection services) =>
             services.AddScoped<ILoggerManager, LoggerManager>();
-        public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
+        public static void ConfigureIdentitySqlContext(this IServiceCollection services, IConfiguration configuration) =>
            services.AddDbContext<ApplicationDbContext>(opts =>
-               opts.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
+               opts.UseSqlServer(configuration.GetConnectionString("IdentityConnection"),
+                   b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+        public static IServiceCollection ConfigurePersistenceSqlDBContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<MaterialDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("MaterialConnection")));
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<INotifyWeaponRepository, NotifyWeaponRepository>();
+            services.AddMediatR(typeof(CreateNotifyWeaponCommand).GetTypeInfo().Assembly);
+
+            return services;
+        }
+
+
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             return services;
         }
-        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
+
+        public static void AddSwaggerService(this IServiceCollection services)
         {
-            services.AddDbContext<MaterialDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("MaterialConnection")));
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
 
-            //services.AddScoped(typeof(IGenericRepositoryAsync<>), typeof(BaseRepository<>));
+                    Title = "Material Management System",
+                    Description = "This is for Ethiopian Federal Police Commission Api MMS."
 
-            //services.AddScoped<IStoreItemRepository, StoreItemRepository>();
-
-            return services;
+                });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    Description = "Input your Bearer token in this format - Bearer {your token here} to access this API",
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer",
+                            },
+                            Scheme = "Bearer",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+                        }, new List<string>()
+                    },
+                });
+            });
+        }
+        public static void AddApiVersioningConfiguration(this IServiceCollection services)
+        {
+            services.AddApiVersioning(setup =>
+            {
+                setup.DefaultApiVersion = new ApiVersion(1, 0);
+                setup.AssumeDefaultVersionWhenUnspecified = true;
+                setup.ReportApiVersions = true;
+                setup.ApiVersionReader = new HeaderApiVersionReader("api-version");
+            });
+        }
+        public static void UseErrorHandlingMiddleware(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<ErrorHandlerMiddleware>();
         }
         public static void ConfigureIdentity(this IServiceCollection services)
         {
@@ -66,7 +131,7 @@ namespace FPCMMS.API.Extensions
                 opt.Password.RequiredUniqueChars = 1;
 
                 //TokenOption
-                //opt.Tokens.EmailConfirmationTokenProvider = "emailconfirmation";
+                //opt.Tokens.EmailConfirmationTokenProvider = "email-confirmation";
 
                 // Lockout settings.
                 opt.Lockout.AllowedForNewUsers = true;
@@ -135,5 +200,6 @@ namespace FPCMMS.API.Extensions
 
             });
         }
+
     }
 }

@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FPCMMS.API.Controllers
 {
-    [Route("api/authentication")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/authentication")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
@@ -55,17 +56,39 @@ namespace FPCMMS.API.Controllers
             return StatusCode(201);
         }
 
+        //[HttpPost("login")]
+        //[ServiceFilter(typeof(ValidationFilterAttribute))]
+        //public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
+        //{
+        //    if (!await _authManager.ValidateUser(user))
+        //    {
+        //        _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
+        //        return Unauthorized();
+        //    }
+
+        //    return Ok(new { WellCome = await _authManager.CreateToken() });
+        //}
+
         [HttpPost("login")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
         {
-            if (!await _authManager.ValidateUser(user))
+            var result = await _authManager.Login(user);
+
+            if (result.Succeeded)
+            {
+                return Ok(new { WellCome = await _authManager.CreateToken() });
+            }
+            if (result.IsLockedOut)
+            {
+                _logger.LogWarn($"{nameof(Authenticate)}: Your account is locked out.");
+                return StatusCode(423, "The account is locked out for 5 minuts");
+            }
+            else
             {
                 _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
                 return Unauthorized();
             }
-
-            return Ok(new { WellCome = await _authManager.CreateToken() });
         }
     }
 }

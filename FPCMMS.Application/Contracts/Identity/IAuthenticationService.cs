@@ -1,4 +1,5 @@
 ﻿using FPCMMS.Application.DTOs;
+using Microsoft.AspNetCore.Identity;
 
 namespace FPCMMS.Application.Contracts.Identity
 {
@@ -6,5 +7,6 @@ namespace FPCMMS.Application.Contracts.Identity
     {
         Task<bool> ValidateUser(UserForAuthenticationDto userForAuth);
         Task<AuthenticationResponse> CreateToken();
+        Task<SignInResult> Login(UserForAuthenticationDto user);
     }
 }

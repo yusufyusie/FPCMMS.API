@@ -143,15 +143,15 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "093d15cc-3a6b-4fb4-9b65-9b12b14486a7",
-                            ConcurrencyStamp = "448cd457-f637-49d5-b45d-14609b871f95",
+                            Id = "3849f847-6bd4-4132-aea3-24457a1effd4",
+                            ConcurrencyStamp = "c3fff02b-9962-4059-9aac-4c49ab161630",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "b35e5061-3312-4519-bdcf-22dd97d87889",
-                            ConcurrencyStamp = "58145f40-eda2-463e-b7e0-b8e76ff2f19a",
+                            Id = "ee25ae80-f7e4-4579-9b7b-60c6cc3c5a51",
+                            ConcurrencyStamp = "5f1de90e-f37c-4739-9575-850c1694eace",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -179,7 +179,7 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Roles-Claims", (string)null);
+                    b.ToTable("RoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -204,7 +204,7 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Users-Claims", (string)null);
+                    b.ToTable("UserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -226,7 +226,7 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Users-Logins", (string)null);
+                    b.ToTable("UserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -241,7 +241,7 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users-Roles", (string)null);
+                    b.ToTable("UserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -260,7 +260,7 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("Users-Tokens", (string)null);
+                    b.ToTable("UsersTokens", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

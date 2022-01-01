@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FPCMMS.Infrastructure.Identity.Migrations
 {
-    public partial class IntialCreate : Migration
+    public partial class InitialApp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,7 +56,7 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Roles-Claims",
+                name: "RoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -67,9 +67,9 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Roles-Claims", x => x.Id);
+                    table.PrimaryKey("PK_RoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Roles-Claims_Roles_RoleId",
+                        name: "FK_RoleClaims_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id",
@@ -77,7 +77,7 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users-Claims",
+                name: "UserClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -88,9 +88,9 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users-Claims", x => x.Id);
+                    table.PrimaryKey("PK_UserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Users-Claims_Users_UserId",
+                        name: "FK_UserClaims_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -98,7 +98,7 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users-Logins",
+                name: "UserLogins",
                 columns: table => new
                 {
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -108,9 +108,9 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users-Logins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.PrimaryKey("PK_UserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_Users-Logins_Users_UserId",
+                        name: "FK_UserLogins_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -118,7 +118,7 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users-Roles",
+                name: "UserRoles",
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -126,15 +126,15 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users-Roles", x => new { x.UserId, x.RoleId });
+                    table.PrimaryKey("PK_UserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_Users-Roles_Roles_RoleId",
+                        name: "FK_UserRoles_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Users-Roles_Users_UserId",
+                        name: "FK_UserRoles_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -142,7 +142,7 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users-Tokens",
+                name: "UsersTokens",
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -152,9 +152,9 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users-Tokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.PrimaryKey("PK_UsersTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_Users-Tokens_Users_UserId",
+                        name: "FK_UsersTokens_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -164,12 +164,17 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "093d15cc-3a6b-4fb4-9b65-9b12b14486a7", "448cd457-f637-49d5-b45d-14609b871f95", "Manager", "MANAGER" });
+                values: new object[] { "3849f847-6bd4-4132-aea3-24457a1effd4", "c3fff02b-9962-4059-9aac-4c49ab161630", "Manager", "MANAGER" });
 
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b35e5061-3312-4519-bdcf-22dd97d87889", "58145f40-eda2-463e-b7e0-b8e76ff2f19a", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "ee25ae80-f7e4-4579-9b7b-60c6cc3c5a51", "5f1de90e-f37c-4739-9575-850c1694eace", "Administrator", "ADMINISTRATOR" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoleClaims_RoleId",
+                table: "RoleClaims",
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
@@ -179,8 +184,18 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Roles-Claims_RoleId",
-                table: "Roles-Claims",
+                name: "IX_UserClaims_UserId",
+                table: "UserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserLogins_UserId",
+                table: "UserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRoles_RoleId",
+                table: "UserRoles",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
@@ -194,39 +209,24 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users-Claims_UserId",
-                table: "Users-Claims",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users-Logins_UserId",
-                table: "Users-Logins",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users-Roles_RoleId",
-                table: "Users-Roles",
-                column: "RoleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Roles-Claims");
+                name: "RoleClaims");
 
             migrationBuilder.DropTable(
-                name: "Users-Claims");
+                name: "UserClaims");
 
             migrationBuilder.DropTable(
-                name: "Users-Logins");
+                name: "UserLogins");
 
             migrationBuilder.DropTable(
-                name: "Users-Roles");
+                name: "UserRoles");
 
             migrationBuilder.DropTable(
-                name: "Users-Tokens");
+                name: "UsersTokens");
 
             migrationBuilder.DropTable(
                 name: "Roles");

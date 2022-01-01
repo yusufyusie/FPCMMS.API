@@ -9,6 +9,7 @@ namespace FPCMMS.API.Mapper
         public GeneralProfile()
         {
             CreateMap<UserForRegistrationDto, ApplicationUser>();
+            CreateMap<UserForUpdateDto, ApplicationUser>();
         }
     }
 }

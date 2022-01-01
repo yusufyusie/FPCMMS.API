@@ -2,9 +2,9 @@
 using FPCMMS.API.Extensions;
 using FPCMMS.Application.Contracts;
 using FPCMMS.Application.Contracts.Identity;
+using FPCMMS.Application.Services;
 using FPCMMS.Infrastructure.Identity.Services;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.OpenApi.Models;
 
 namespace FPCMMS.API
 {
@@ -23,23 +23,22 @@ namespace FPCMMS.API
             services.ConfigureCors();
             services.ConfigureIISIntegration();
             services.ConfigureLoggerService();
-            services.ConfigureSqlContext(Configuration);
+            services.ConfigureIdentitySqlContext(Configuration);
             services.AddApplicationServices();
-            services.AddPersistenceServices(Configuration);
+            services.ConfigurePersistenceSqlDBContext(Configuration);
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ValidationFilterAttribute>();
+            services.AddApiVersioningConfiguration();
 
             services.AddAuthentication();
             services.ConfigureIdentity();
             services.ConfigureJWT(Configuration);
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<ILoggedInUserService, LoggedInUserService>();
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
-            });
+            services.AddSwaggerService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,11 +47,11 @@ namespace FPCMMS.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
 
-            app.ConfigureExceptionHandler(logger);
+            app.UseSwagger();
+
+            //  app.ConfigureExceptionHandler(logger);
             app.UseCors("CorsPolicy");
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -60,7 +59,15 @@ namespace FPCMMS.API
                 ForwardedHeaders = ForwardedHeaders.All
             });
 
+
+
+            app.UseSwaggerUI(c =>
+              {
+                  c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1");
+              });
+
             app.UseResponseCaching();
+            app.UseErrorHandlingMiddleware();
 
             app.UseRouting();
 
