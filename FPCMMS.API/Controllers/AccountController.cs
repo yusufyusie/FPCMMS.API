@@ -20,16 +20,14 @@ namespace FPCMMS.API.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDbContext _applicationDbContextt;
         public AccountController(ILoggerManager logger, IMapper mapper, UserManager<ApplicationUser> userManager, ApplicationDbContext applicationDbContext,
-                                RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager)
+                                 SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
             _applicationDbContextt = applicationDbContext;
         }
 
@@ -40,12 +38,7 @@ namespace FPCMMS.API.Controllers
             var users = await _applicationDbContextt.Users.ToListAsync();
             return Ok(users);
         }
-        private async Task<IdentityResult> AddRole(string roleName)
-        {
-            var role = new IdentityRole();
-            role.Name = roleName;
-            return await _roleManager.CreateAsync(role);
-        }
+
         [HttpPut("{id}"), /*Authorize*/]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserForUpdateDto userForUpdateDto)
         {
@@ -83,6 +76,7 @@ namespace FPCMMS.API.Controllers
             }
             return BadRequest();
         }
+
         [HttpPost("signOut")]
         [SwaggerResponse(HttpStatusCode.NoContent, null, Description = "Valid Sign Out")]
         public async Task<IActionResult> SignOut()
@@ -90,6 +84,7 @@ namespace FPCMMS.API.Controllers
             await _signInManager.SignOutAsync();
             return NoContent();
         }
+
 
     }
 }

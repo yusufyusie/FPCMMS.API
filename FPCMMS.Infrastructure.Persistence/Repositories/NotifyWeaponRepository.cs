@@ -11,7 +11,6 @@ namespace FPCMMS.Infrastructure.Persistence.Repositories
         {
 
         }
-
         public async Task<List<NotifyWeapon>> GetNotifyWeaponsWithEvents(bool includePassedEvents)
         {
             var allNotifyWeapons = await _dbContext.NotifyWeapons.ToListAsync();

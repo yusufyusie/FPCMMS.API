@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FPCMMS.Infrastructure.Persistence.Migrations
 {
-    public partial class InitialPersis : Migration
+    public partial class IntialPersis : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

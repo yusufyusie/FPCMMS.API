@@ -22,15 +22,12 @@ namespace FPCMMS.Infrastructure.Persistence.Repositories
         {
             return await _dbContext.Set<T>().ToListAsync();
         }
-
         public async virtual Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size)
         {
             return await _dbContext.Set<T>()
-                                    .Skip((page - 1) * size)
-                                    .Take(size)
-                                    .AsNoTracking().ToListAsync();
+                                   .Skip((page - 1) * size)
+                                   .Take(size).AsNoTracking().ToListAsync();
         }
-
         public async Task<T> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);

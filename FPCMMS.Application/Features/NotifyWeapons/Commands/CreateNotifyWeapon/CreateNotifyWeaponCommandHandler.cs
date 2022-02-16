@@ -12,9 +12,9 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon
         private readonly IGenericRepository<NotifyWeapon> _notifyWeaponRepository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
-        public CreateNotifyWeaponCommandHandler(IMapper mapper, IGenericRepository<NotifyWeapon> notifyWeaponRepositoryr, ILoggerManager loggerManager)
+        public CreateNotifyWeaponCommandHandler(IMapper mapper, IGenericRepository<NotifyWeapon> notifyWeaponRepository, ILoggerManager loggerManager)
         {
-            _notifyWeaponRepository = notifyWeaponRepositoryr;
+            _notifyWeaponRepository = notifyWeaponRepository;
             _mapper = mapper;
             _logger = loggerManager;
         }
@@ -22,7 +22,7 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon
         {
             var createNotifyWeaponCommandResponse = new CreateNotifyWeaponCommandResponse();
             var validator = new CreateNotifyWeaponCommandValidator();
-            var validationResult = await validator.ValidateAsync(request);
+            var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
             if (validationResult.Errors.Count > 0)
             {

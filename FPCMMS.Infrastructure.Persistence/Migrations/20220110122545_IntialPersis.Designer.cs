@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FPCMMS.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(MaterialDbContext))]
-    [Migration("20211231205940_InitialPersis")]
-    partial class InitialPersis
+    [Migration("20220110122545_IntialPersis")]
+    partial class IntialPersis
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

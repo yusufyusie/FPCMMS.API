@@ -75,9 +75,7 @@ namespace FPCMMS.Infrastructure.Identity.Services
             {
                 new Claim(ClaimTypes.Name, _user.UserName),
                 new Claim("fullName", _user.FirstName + " " + _user.LastName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                //new Claim(JwtRegisteredClaimNames.Aud, _configuration["Jwt:Audience"]),
-                //new Claim(JwtRegisteredClaimNames.Iss, _configuration["Jwt:Issuer"]),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),          
                 new Claim("uid", _user.Id)
             };
 

@@ -9,7 +9,7 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon
             RuleFor(p => p.Name)
                .NotEmpty().WithMessage("{PropertyName} is required.")
                .NotNull()
-               .MaximumLength(50).WithMessage("{PropertyName} must not exceed 10 characters.");
+               .MaximumLength(10).WithMessage("{PropertyName} must not exceed 10 characters.");
 
         }
     }

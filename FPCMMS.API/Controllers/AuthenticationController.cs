@@ -56,18 +56,6 @@ namespace FPCMMS.API.Controllers
             return StatusCode(201);
         }
 
-        //[HttpPost("login")]
-        //[ServiceFilter(typeof(ValidationFilterAttribute))]
-        //public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
-        //{
-        //    if (!await _authManager.ValidateUser(user))
-        //    {
-        //        _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
-        //        return Unauthorized();
-        //    }
-
-        //    return Ok(new { WellCome = await _authManager.CreateToken() });
-        //}
 
         [HttpPost("login")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
@@ -82,7 +70,7 @@ namespace FPCMMS.API.Controllers
             if (result.IsLockedOut)
             {
                 _logger.LogWarn($"{nameof(Authenticate)}: Your account is locked out.");
-                return StatusCode(423, "The account is locked out for 5 minuts");
+                return StatusCode(423, "The account is locked out for 5 minutes");
             }
             else
             {

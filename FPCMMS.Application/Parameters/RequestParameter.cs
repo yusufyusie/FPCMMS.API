@@ -1,8 +1,12 @@
-﻿namespace FPCMMS.Application.Parameters
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace FPCMMS.Application.Parameters
 {
     public class RequestParameter
     {
+        [FromQuery]
         public int PageNumber { get; set; }
+        [FromQuery]
         public int PageSize { get; set; }
         public RequestParameter()
         {

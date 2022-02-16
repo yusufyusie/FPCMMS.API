@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FPCMMS.Infrastructure.Identity.Migrations
 {
-    public partial class InitialApp : Migration
+    public partial class IntialApp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -164,12 +164,12 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "3849f847-6bd4-4132-aea3-24457a1effd4", "c3fff02b-9962-4059-9aac-4c49ab161630", "Manager", "MANAGER" });
+                values: new object[] { "5713236c-1611-4a71-9d68-61779c1ff71d", "595611f3-a28b-4c58-9d30-f4fd6d4cba87", "Manager", "MANAGER" });
 
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ee25ae80-f7e4-4579-9b7b-60c6cc3c5a51", "5f1de90e-f37c-4739-9575-850c1694eace", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "fd1c150f-63f7-48e6-b51c-59ddbb6750bc", "9f782e69-de20-43bc-a94c-2076443a8327", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FPCMMS.Infrastructure.Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211231184922_InitialApp")]
-    partial class InitialApp
+    [Migration("20220110122242_IntialApp")]
+    partial class IntialApp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -145,15 +145,15 @@ namespace FPCMMS.Infrastructure.Identity.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3849f847-6bd4-4132-aea3-24457a1effd4",
-                            ConcurrencyStamp = "c3fff02b-9962-4059-9aac-4c49ab161630",
+                            Id = "5713236c-1611-4a71-9d68-61779c1ff71d",
+                            ConcurrencyStamp = "595611f3-a28b-4c58-9d30-f4fd6d4cba87",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "ee25ae80-f7e4-4579-9b7b-60c6cc3c5a51",
-                            ConcurrencyStamp = "5f1de90e-f37c-4739-9575-850c1694eace",
+                            Id = "fd1c150f-63f7-48e6-b51c-59ddbb6750bc",
+                            ConcurrencyStamp = "9f782e69-de20-43bc-a94c-2076443a8327",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
