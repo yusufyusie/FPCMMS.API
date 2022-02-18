@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FPCMMS.Infrastructure.Persistence.Repositories
 {
-    public class NotifyWeaponRepository : BaseRepository<NotifyWeapon>, INotifyWeaponRepository
+    public class NotifyWeaponRepository : BaseRepository<Notify>, INotifyWeaponRepository
     {
         public NotifyWeaponRepository(MaterialDbContext dbContext) : base(dbContext)
         {
 
         }
-        public async Task<List<NotifyWeapon>> GetNotifyWeaponsWithEvents(bool includePassedEvents)
+        public async Task<List<Notify>> GetNotifyWeaponsWithEvents(bool includePassedEvents)
         {
-            var allNotifyWeapons = await _dbContext.NotifyWeapons.ToListAsync();
+            var allNotifyWeapons = await _dbContext.Notifies.ToListAsync();
             return allNotifyWeapons;
         }
     }

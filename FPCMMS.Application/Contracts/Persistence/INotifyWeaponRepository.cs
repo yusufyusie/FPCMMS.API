@@ -2,8 +2,8 @@
 
 namespace FPCMMS.Application.Contracts.Persistence
 {
-    public interface INotifyWeaponRepository : IGenericRepository<NotifyWeapon>
+    public interface INotifyWeaponRepository : IGenericRepository<Notify>
     {
-        Task<List<NotifyWeapon>> GetNotifyWeaponsWithEvents(bool includePassedEvents);
+        Task<List<Notify>> GetNotifyWeaponsWithEvents(bool includePassedEvents);
     }
 }

@@ -9,10 +9,10 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon
 {
     public class CreateNotifyWeaponCommandHandler : IRequestHandler<CreateNotifyWeaponCommand, CreateNotifyWeaponCommandResponse>
     {
-        private readonly IGenericRepository<NotifyWeapon> _notifyWeaponRepository;
+        private readonly IGenericRepository<Notify> _notifyWeaponRepository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
-        public CreateNotifyWeaponCommandHandler(IMapper mapper, IGenericRepository<NotifyWeapon> notifyWeaponRepository, ILoggerManager loggerManager)
+        public CreateNotifyWeaponCommandHandler(IMapper mapper, IGenericRepository<Notify> notifyWeaponRepository, ILoggerManager loggerManager)
         {
             _notifyWeaponRepository = notifyWeaponRepository;
             _mapper = mapper;
@@ -36,9 +36,9 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon
             }
             if (createNotifyWeaponCommandResponse.Success)
             {
-                var notifyWeapon = _mapper.Map<NotifyWeapon>(request);
+                var notifyWeapon = _mapper.Map<Notify>(request);
                 notifyWeapon = await _notifyWeaponRepository.AddAsync(notifyWeapon);
-                createNotifyWeaponCommandResponse.NotifyWeapon = _mapper.Map<NotifyWeaponForCreationDto>(notifyWeapon);
+                createNotifyWeaponCommandResponse.Notify = _mapper.Map<NotifyWeaponForCreationDto>(notifyWeapon);
 
             }
 

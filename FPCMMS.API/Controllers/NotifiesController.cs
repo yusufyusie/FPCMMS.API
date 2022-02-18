@@ -9,13 +9,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace FPCMMS.API.Controllers
 {
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/notify-Weapons")]
+    [Route("api/v{version:apiVersion}/notifies")]
     [ApiController]
-    public class NotifyWeaponsController : ControllerBase
+    public class NotifiesController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<NotifyWeaponsController> _Logger;
-        public NotifyWeaponsController(IMediator mediator, ILogger<NotifyWeaponsController> logger)
+        private readonly ILogger<NotifiesController> _Logger;
+        public NotifiesController(IMediator mediator, ILogger<NotifiesController> logger)
         {
             _mediator = mediator;
             _Logger = logger;
@@ -36,7 +36,7 @@ namespace FPCMMS.API.Controllers
             return Ok(await _mediator.Send(new GetNotifyWeaponsByIdQuery { Id = id }));
         }
 
-        [HttpPost(Name = "AddNotifyWeapon")]
+         [HttpPost(Name = "AddNotifyWeapon")]
         //[ProducesResponseType(201)]
         //[ProducesResponseType(400)]
         //[ProducesResponseType(422)]

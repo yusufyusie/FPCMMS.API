@@ -11,7 +11,7 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon
         {
 
         }
-        public NotifyWeaponForCreationDto NotifyWeapon { get; set; }
+        public NotifyWeaponForCreationDto Notify { get; set; }
 
     }
 }

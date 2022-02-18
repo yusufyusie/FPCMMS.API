@@ -8,10 +8,10 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Commands.UpdateNotifyWeapon
 {
     public class UpdateNotifyWeaponCommandHandler : IRequestHandler<UpdateNotifyWeaponCommand>
     {
-        private readonly IGenericRepository<NotifyWeapon> _notifyWeaponRepository;
+        private readonly IGenericRepository<Notify> _notifyWeaponRepository;
         //private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
-        public UpdateNotifyWeaponCommandHandler(IGenericRepository<NotifyWeapon> genericRepository, IMapper mapper)
+        public UpdateNotifyWeaponCommandHandler(IGenericRepository<Notify> genericRepository, IMapper mapper)
         {
             _notifyWeaponRepository = genericRepository;
             _mapper = mapper;
@@ -21,14 +21,14 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Commands.UpdateNotifyWeapon
             var notifyWeaponToUpdate = await _notifyWeaponRepository.GetByIdAsync(request.Id);
             if (notifyWeaponToUpdate == null)
             {
-                throw new ApiException(nameof(NotifyWeapon), request.Id);
+                throw new ApiException(nameof(Notify), request.Id);
             }
             var validator = new UpdateNotifyWeaponCommandValidator();
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (validationResult.Errors.Count > 0)
 
                 throw new ValidationException(validationResult);
-            _mapper.Map(request, notifyWeaponToUpdate, typeof(UpdateNotifyWeaponCommand), typeof(NotifyWeapon));
+            _mapper.Map(request, notifyWeaponToUpdate, typeof(UpdateNotifyWeaponCommand), typeof(Notify));
             await _notifyWeaponRepository.UpdateAsync(notifyWeaponToUpdate);
             return Unit.Value;
 

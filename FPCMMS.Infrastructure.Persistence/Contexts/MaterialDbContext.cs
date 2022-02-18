@@ -17,12 +17,13 @@ namespace FPCMMS.Infrastructure.Persistence.Contexts
         {
             _loggedInUserService = loggedInUserService;
         }
-        public DbSet<NotifyWeapon> NotifyWeapons { get; set; }
+        public DbSet<Notify> Notifies { get; set; }
+        public DbSet<NotifyItem> NotifyItems { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new NotifyWeaponConfiguration());
+            //modelBuilder.ApplyConfiguration(new NotifyWeaponConfiguration());
         }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

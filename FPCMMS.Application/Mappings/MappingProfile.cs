@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FPCMMS.Application.DTOs;
+using FPCMMS.Application.Features.NotifyItems.Commands.CreateNotifyItem;
 using FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon;
 using FPCMMS.Application.Features.NotifyWeapons.Commands.UpdateNotifyWeapon;
 using FPCMMS.Application.Features.NotifyWeapons.Queries.GetAllNotifyWeapons;
@@ -11,14 +12,18 @@ namespace FPCMMS.Application.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<NotifyWeapon, NotifyWeaponDto>();
-            CreateMap<NotifyWeapon, NotifyWeaponForCreationDto>();
-            CreateMap<NotifyWeapon, CreateNotifyWeaponCommand>().ReverseMap();
+            CreateMap<Notify, NotifyWeaponDto>();
+            CreateMap<Notify, NotifyWeaponForCreationDto>().ReverseMap();
+            CreateMap<Notify, CreateNotifyWeaponCommand>().ReverseMap();
 
             CreateMap<GetAllNotifyWeaponsQuery, GetAllNotifyWeaponsParameter>();
-            CreateMap<NotifyWeapon, UpdateNotifyWeaponCommand>().ReverseMap();
-            CreateMap<NotifyWeapon, NotifyWeaponForUpdateDto>();
-            CreateMap<NotifyWeapon, GetAllNotifyWeaponsViewModel>().ReverseMap();
+            CreateMap<Notify, UpdateNotifyWeaponCommand>().ReverseMap();
+            CreateMap<Notify, NotifyWeaponForUpdateDto>();
+            CreateMap<Notify, GetAllNotifyWeaponsViewModel>().ReverseMap();
+
+            CreateMap<NotifyItem, NotifyItemDto>();
+            CreateMap<NotifyItem, NotifyItemForCreationDto>().ReverseMap();
+            CreateMap<NotifyItem, CreateNotifyItemCommand>().ReverseMap();
 
         }
     }
