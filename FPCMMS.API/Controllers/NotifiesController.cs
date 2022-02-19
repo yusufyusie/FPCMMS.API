@@ -51,10 +51,10 @@ namespace FPCMMS.API.Controllers
 
 
         [HttpPost(Name = "AddNotifyWeapon")]
-        [ProducesResponseType(201)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(422)]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        //[ProducesResponseType(201)]
+        //[ProducesResponseType(400)]
+        //[ProducesResponseType(422)]
+        //[ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ActionResult<CreateNotifyWeaponCommandResponse>> Create([FromBody] CreateNotifyWeaponCommand createNotifyWeaponCommand)
         {
             var response = await _mediator.Send(createNotifyWeaponCommand);
