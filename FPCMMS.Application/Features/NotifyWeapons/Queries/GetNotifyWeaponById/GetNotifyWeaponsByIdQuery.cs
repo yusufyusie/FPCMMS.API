@@ -8,7 +8,7 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Queries.GetNotifyWeaponById
 {
     public class GetNotifyWeaponsByIdQuery : IRequest<BaseResponse<Notify>>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public class GetNotifyWeaponByIdQueryHandler : IRequestHandler<GetNotifyWeaponsByIdQuery, BaseResponse<Notify>>
         {
             private readonly INotifyWeaponRepository _notifyWeaponRepository;

@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 namespace FPCMMS.Application.Contracts.Persistence
 {
     public interface INotifyItemRepository:IGenericRepository<NotifyItem>
-    {
-        Task<List<NotifyItem>> GetNotifyItemsWithEvents(bool includePassedEvents);
-         void CreateNotifyItemForNotifyWeapon(int notifyId, NotifyItem notifyItem);
+    {        
     }
 }

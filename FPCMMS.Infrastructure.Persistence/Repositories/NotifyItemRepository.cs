@@ -10,18 +10,7 @@ namespace FPCMMS.Infrastructure.Persistence.Repositories
         public NotifyItemRepository(MaterialDbContext dbContext) : base(dbContext)
         {
 
-        }
-
-        public void CreateNotifyItemForNotifyWeapon(int notifyId, NotifyItem notifyItem)
-        {
-            notifyItem.NotifyId = notifyId;
-            AddAsync(notifyItem);
-        }
-
-        public async Task<List<NotifyItem>> GetNotifyItemsWithEvents(bool includePassedEvents)
-        {
-            var allNotifyItems = await _dbContext.NotifyItems.ToListAsync();
-            return allNotifyItems;
-        }
+        }        
+        
     }
 }

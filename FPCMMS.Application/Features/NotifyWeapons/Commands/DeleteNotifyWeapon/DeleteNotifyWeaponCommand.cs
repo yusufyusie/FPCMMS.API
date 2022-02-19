@@ -4,6 +4,6 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Commands.DeleteNotifyWeapon
 {
     public class DeleteNotifyWeaponCommand : IRequest
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

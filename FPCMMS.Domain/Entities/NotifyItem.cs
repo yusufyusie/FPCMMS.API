@@ -11,8 +11,6 @@ namespace FPCMMS.Domain.Entities
         public int Quantity { get; set; }
         [ForeignKey(nameof(Notify))]
         public int NotifyId { get; set; }
-        public Notify Notify { get; set; }
-        
-
+        public Notify Notify { get; set; }       
     }
 }

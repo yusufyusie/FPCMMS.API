@@ -1,7 +1,9 @@
-﻿using FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon;
+﻿using FPCMMS.API.ActionFilters;
+using FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon;
 using FPCMMS.Application.Features.NotifyWeapons.Commands.DeleteNotifyWeapon;
 using FPCMMS.Application.Features.NotifyWeapons.Commands.UpdateNotifyWeapon;
 using FPCMMS.Application.Features.NotifyWeapons.Queries.GetAllNotifyWeapons;
+using FPCMMS.Application.Features.NotifyWeapons.Queries.GetNotifiesListWithNotifyItem;
 using FPCMMS.Application.Features.NotifyWeapons.Queries.GetNotifyWeaponById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -31,16 +33,28 @@ namespace FPCMMS.API.Controllers
             return Ok(dtos);
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<GetAllNotifyWeaponsViewModel>>> GetById(Guid id)
+        public async Task<ActionResult<List<GetAllNotifyWeaponsViewModel>>> GetById(int id)
         {
             return Ok(await _mediator.Send(new GetNotifyWeaponsByIdQuery { Id = id }));
         }
 
-         [HttpPost(Name = "AddNotifyWeapon")]
-        //[ProducesResponseType(201)]
-        //[ProducesResponseType(400)]
-        //[ProducesResponseType(422)]
-        //[ServiceFilter(typeof(ValidationFilterAttribute))]
+        [HttpGet("allwithnotifyitems", Name = "GetNotifiesWithNotifyItems")]
+        [ProducesDefaultResponseType]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<NotifyNotifyItemListVm>>> GetNotifiesWithNotifyItems(bool includeHistory)
+        {
+            GetNotifesListWithNotifyItemsQuery getNotifiesListWithNotifyitemsQuery = new GetNotifesListWithNotifyItemsQuery() { IncludeHistory = includeHistory };
+
+            var dtos = await _mediator.Send(getNotifiesListWithNotifyitemsQuery);
+            return Ok(dtos);
+        }
+
+
+        [HttpPost(Name = "AddNotifyWeapon")]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(422)]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ActionResult<CreateNotifyWeaponCommandResponse>> Create([FromBody] CreateNotifyWeaponCommand createNotifyWeaponCommand)
         {
             var response = await _mediator.Send(createNotifyWeaponCommand);
@@ -59,7 +73,7 @@ namespace FPCMMS.API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete(int id)
         {
             var deleteNotifyWeaponCommand = new DeleteNotifyWeaponCommand()
             { Id = id };

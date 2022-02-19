@@ -13,7 +13,7 @@ namespace FPCMMS.Infrastructure.Persistence.Repositories
 
         }
 
-        public virtual async Task<T> GetByIdAsync(Guid id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }

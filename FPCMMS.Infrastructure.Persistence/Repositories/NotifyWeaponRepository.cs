@@ -11,10 +11,14 @@ namespace FPCMMS.Infrastructure.Persistence.Repositories
         {
 
         }
-        public async Task<List<Notify>> GetNotifyWeaponsWithEvents(bool includePassedEvents)
+        public async Task<List<Notify>> GetNotifiesWithNotifyItems(bool includePassedEvents)
         {
-            var allNotifyWeapons = await _dbContext.Notifies.ToListAsync();
-            return allNotifyWeapons;
+            var allNotifies = await _dbContext.Notifies.Include(x => x.NotifyItems).ToListAsync();
+            if (!includePassedEvents)
+            {
+                allNotifies.ForEach(p => p.NotifyItems.ToList());
+            }
+            return allNotifies;
         }
     }
 }
