@@ -1,4 +1,7 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using FPCMMS.Application.Contracts.Persistence;
+using FPCMMS.Application.Responses;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +12,22 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Queries.GetNotifiesListWithN
 {
     public class GetNotifesListWithNotifyItemsQuery : IRequest<List<NotifyNotifyItemListVm>>
     {
-        public bool IncludeHistory { get; set; }
+      public bool IncludeHistory { get; set; }
+        public class GetNotifiesListWithNotifyItemsQueryHandler : IRequestHandler<GetNotifesListWithNotifyItemsQuery, List<NotifyNotifyItemListVm>>
+        {
+            private readonly IMapper _mapper;
+            private readonly INotifyWeaponRepository _notifyWeaponRepository;
+            public GetNotifiesListWithNotifyItemsQueryHandler(INotifyWeaponRepository notifyWeaponRepository, IMapper mapper)
+            {
+                _notifyWeaponRepository = notifyWeaponRepository;
+                _mapper = mapper;
+            }
+
+            public async Task<List<NotifyNotifyItemListVm>> Handle(GetNotifesListWithNotifyItemsQuery request, CancellationToken cancellationToken)
+            {
+                var list = await _notifyWeaponRepository.GetNotifiesWithNotifyItems(request.IncludeHistory);
+                return _mapper.Map<List<NotifyNotifyItemListVm>>(list);
+            }
+        }
     }
 }
