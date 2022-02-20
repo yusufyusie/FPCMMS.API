@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using FPCMMS.Application.DTOs;
+using FPCMMS.Application.DTOs.Notify;
+using FPCMMS.Application.DTOs.NotifyItem;
 using FPCMMS.Application.Features.NotifyItems.Commands.CreateNotifyItem;
 using FPCMMS.Application.Features.NotifyItems.Commands.UpdateNotifyItem;
 using FPCMMS.Application.Features.NotifyItems.Queries.GetNotifyDetail;

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FPCMMS.Application.DTOs
+namespace FPCMMS.Application.DTOs.User
 {
     public class UserForAuthenticationDto
     {

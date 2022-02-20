@@ -1,4 +1,5 @@
-﻿using FPCMMS.Domain.Entities;
+﻿using FPCMMS.Application.Contracts.Generic;
+using FPCMMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using FPCMMS.Application.Contracts.Generic;
 using FPCMMS.Application.Contracts.Persistence;
 using FPCMMS.Application.DTOs;
+using FPCMMS.Application.DTOs.Notify;
 using FPCMMS.Application.Exceptions;
 using FPCMMS.Domain.Entities;
 using MediatR;

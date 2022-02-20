@@ -2,6 +2,7 @@
 using FPCMMS.API.Extensions;
 using FPCMMS.Application.Contracts;
 using FPCMMS.Application.Contracts.Identity;
+using FPCMMS.Application.Contracts.Service;
 using FPCMMS.Application.Services;
 using FPCMMS.Infrastructure.Identity.Services;
 using Microsoft.AspNetCore.HttpOverrides;

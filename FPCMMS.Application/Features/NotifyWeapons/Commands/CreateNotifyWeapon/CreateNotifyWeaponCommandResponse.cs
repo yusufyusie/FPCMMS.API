@@ -1,6 +1,7 @@
 ﻿
 
 using FPCMMS.Application.DTOs;
+using FPCMMS.Application.DTOs.Notify;
 using FPCMMS.Application.Responses;
 
 namespace FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon

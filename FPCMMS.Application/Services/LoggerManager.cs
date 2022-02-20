@@ -1,4 +1,5 @@
 ﻿using FPCMMS.Application.Contracts;
+using FPCMMS.Application.Contracts.Service;
 using NLog;
 
 namespace FPCMMS.Application.Services

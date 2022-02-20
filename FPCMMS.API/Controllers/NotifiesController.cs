@@ -42,10 +42,8 @@ namespace FPCMMS.API.Controllers
         [ProducesDefaultResponseType]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<NotifyNotifyItemListVm>>> GetNotifiesWithNotifyItems(bool includeHistory)
-        {
-            GetNotifesListWithNotifyItemsQuery getNotifiesListWithNotifyitemsQuery = new GetNotifesListWithNotifyItemsQuery() { IncludeHistory = includeHistory };
-
-            var dtos = await _mediator.Send(getNotifiesListWithNotifyitemsQuery);
+        {            
+            var dtos = await _mediator.Send(new GetNotifesListWithNotifyItemsQuery() { IncludeHistory = includeHistory });
             return Ok(dtos);
         }
 

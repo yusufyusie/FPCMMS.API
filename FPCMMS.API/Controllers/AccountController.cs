@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using FPCMMS.Application.Contracts;
+using FPCMMS.Application.Contracts.Service;
 using FPCMMS.Application.DTOs;
+using FPCMMS.Application.DTOs.User;
 using FPCMMS.Infrastructure.Identity.Contexts;
 using FPCMMS.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;

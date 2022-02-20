@@ -1,4 +1,4 @@
-﻿namespace FPCMMS.Application.DTOs
+﻿namespace FPCMMS.Application.DTOs.Notify
 {
     public abstract class NotifyWeaponForManipulationDto
     {       

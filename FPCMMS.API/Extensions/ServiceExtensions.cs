@@ -1,6 +1,8 @@
 ﻿using FPCMMS.API.Middlewares;
 using FPCMMS.Application.Contracts;
+using FPCMMS.Application.Contracts.Generic;
 using FPCMMS.Application.Contracts.Persistence;
+using FPCMMS.Application.Contracts.Service;
 using FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon;
 using FPCMMS.Application.Services;
 using FPCMMS.Infrastructure.Identity.Contexts;

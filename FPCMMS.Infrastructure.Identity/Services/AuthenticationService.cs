@@ -1,5 +1,6 @@
 ﻿using FPCMMS.Application.Contracts.Identity;
 using FPCMMS.Application.DTOs;
+using FPCMMS.Application.DTOs.User;
 using FPCMMS.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;

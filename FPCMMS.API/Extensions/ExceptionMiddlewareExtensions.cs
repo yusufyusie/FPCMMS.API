@@ -1,4 +1,5 @@
 ﻿using FPCMMS.Application.Contracts;
+using FPCMMS.Application.Contracts.Service;
 using FPCMMS.Domain.Common.ErrorModel;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Net;

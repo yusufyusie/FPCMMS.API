@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FPCMMS.Application.DTOs
+namespace FPCMMS.Application.DTOs.NotifyItem
 {
     public abstract class NotifyItemForManipulationDto
     {      

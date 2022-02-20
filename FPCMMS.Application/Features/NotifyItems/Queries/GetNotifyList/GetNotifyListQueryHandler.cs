@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FPCMMS.Application.Contracts.Generic;
 using FPCMMS.Application.Contracts.Persistence;
 using FPCMMS.Domain.Entities;
 using MediatR;

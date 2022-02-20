@@ -1,4 +1,5 @@
 ﻿using FPCMMS.Application.DTOs;
+using FPCMMS.Application.DTOs.NotifyItem;
 using FPCMMS.Application.Responses;
 
 namespace FPCMMS.Application.Features.NotifyItems.Commands.CreateNotifyItem

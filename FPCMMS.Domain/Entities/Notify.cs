@@ -10,6 +10,6 @@ namespace FPCMMS.Domain.Entities
         public int Id { get; set; }       
         public string WeaponDescription { get; set; }
         public string Attachment { get; set; }
-        public virtual ICollection<NotifyItem> NotifyItems { get; set; }
+        public ICollection<NotifyItem> NotifyItems { get; set; }
     }
 }

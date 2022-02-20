@@ -1,4 +1,5 @@
-﻿using FPCMMS.Application.Contracts.Persistence;
+﻿using FPCMMS.Application.Contracts.Generic;
+using FPCMMS.Application.Contracts.Persistence;
 using FPCMMS.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 

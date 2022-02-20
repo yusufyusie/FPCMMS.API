@@ -1,4 +1,5 @@
 ﻿using FPCMMS.Application.DTOs;
+using FPCMMS.Application.DTOs.NotifyItem;
 using MediatR;
 
 namespace FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon

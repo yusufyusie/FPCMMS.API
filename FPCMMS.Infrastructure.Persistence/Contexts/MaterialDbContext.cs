@@ -1,4 +1,5 @@
 ﻿using FPCMMS.Application.Contracts;
+using FPCMMS.Application.Contracts.Service;
 using FPCMMS.Domain.Common;
 using FPCMMS.Domain.Entities;
 using FPCMMS.Infrastructure.Persistence.Configuration;
