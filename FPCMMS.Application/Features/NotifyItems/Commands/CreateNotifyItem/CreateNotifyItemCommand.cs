@@ -12,6 +12,6 @@ namespace FPCMMS.Application.Features.NotifyItems.Commands.CreateNotifyItem
         public string WeaponName { get; set; }
         public string WeaponType { get; set; }
         public int Quantity { get; set; }
-        public int NotifyId { get; set; }
+        public int NotifiesId { get; set; }
     }
 }

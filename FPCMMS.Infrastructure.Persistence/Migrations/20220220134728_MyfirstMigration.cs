@@ -4,7 +4,7 @@
 
 namespace FPCMMS.Infrastructure.Persistence.Migrations
 {
-    public partial class MyFirstmigration : Migration
+    public partial class MyfirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,42 +12,42 @@ namespace FPCMMS.Infrastructure.Persistence.Migrations
                 name: "Notifies",
                 columns: table => new
                 {
-                    NotifyId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     WeaponDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Attachment = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Attachments = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notifies", x => x.NotifyId);
+                    table.PrimaryKey("PK_Notifies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "NotifyItems",
                 columns: table => new
                 {
-                    NotifyItemId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     WeaponName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WeaponType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    NotifyId = table.Column<int>(type: "int", nullable: false)
+                    NotifiesId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NotifyItems", x => x.NotifyItemId);
+                    table.PrimaryKey("PK_NotifyItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_NotifyItems_Notifies_NotifyId",
-                        column: x => x.NotifyId,
+                        name: "FK_NotifyItems_Notifies_NotifiesId",
+                        column: x => x.NotifiesId,
                         principalTable: "Notifies",
-                        principalColumn: "NotifyId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_NotifyItems_NotifyId",
+                name: "IX_NotifyItems_NotifiesId",
                 table: "NotifyItems",
-                column: "NotifyId");
+                column: "NotifiesId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

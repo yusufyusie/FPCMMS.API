@@ -8,9 +8,9 @@ namespace FPCMMS.Application.Features.NotifyItems.Queries.GetNotifyList
 {
     public class NotifyListVm
     {
-        public int NotifyItemId { get; set; }
+        public int Id { get; set; }
         public string WeaponName { get; set; }
         public string WeaponType { get; set; }
-        public int Quantity { get; set; }
+        public int Quantity { get; set; }       
     }
 }

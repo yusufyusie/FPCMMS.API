@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using FPCMMS.Application.Contracts;
 using FPCMMS.Application.Contracts.Service;
-using FPCMMS.Application.DTOs;
 using FPCMMS.Application.DTOs.User;
 using FPCMMS.Infrastructure.Identity.Contexts;
 using FPCMMS.Infrastructure.Identity.Models;
@@ -11,19 +9,19 @@ using Microsoft.EntityFrameworkCore;
 using NSwag.Annotations;
 using System.Net;
 
-namespace FPCMMS.API.Controllers
+namespace FPCMMS.API.Controllers.Identity
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/users")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountsController : ControllerBase
     {
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _applicationDbContextt;
-        public AccountController(ILoggerManager logger, IMapper mapper, UserManager<ApplicationUser> userManager, ApplicationDbContext applicationDbContext,
+        public AccountsController(ILoggerManager logger, IMapper mapper, UserManager<ApplicationUser> userManager, ApplicationDbContext applicationDbContext,
                                  SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;

@@ -1,5 +1,4 @@
-﻿using FPCMMS.API.ActionFilters;
-using FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon;
+﻿using FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon;
 using FPCMMS.Application.Features.NotifyWeapons.Commands.DeleteNotifyWeapon;
 using FPCMMS.Application.Features.NotifyWeapons.Commands.UpdateNotifyWeapon;
 using FPCMMS.Application.Features.NotifyWeapons.Queries.GetAllNotifyWeapons;
@@ -8,12 +7,9 @@ using FPCMMS.Application.Features.NotifyWeapons.Queries.GetNotifyWeaponById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FPCMMS.API.Controllers
+namespace FPCMMS.API.Controllers.Notify
 {
-    [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/notifies")]
-    [ApiController]
-    public class NotifiesController : ControllerBase
+    public class NotifiesController :  VersionedApiController
     {
         private readonly IMediator _mediator;
         private readonly ILogger<NotifiesController> _Logger;
@@ -22,8 +18,7 @@ namespace FPCMMS.API.Controllers
             _mediator = mediator;
             _Logger = logger;
         }
-        //  [Authorize]
-        [HttpGet("all", Name = "GetAllNotifyWeapons")]
+        [HttpGet("all ", Name = "GetAllNotifyWeapons")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<GetAllNotifyWeaponsViewModel>>> GetAllStoreItems([FromQuery] GetAllNotifyWeaponsParameter filter)
         {
@@ -49,9 +44,6 @@ namespace FPCMMS.API.Controllers
 
 
         [HttpPost(Name = "AddNotifyWeapon")]
-        //[ProducesResponseType(201)]
-        //[ProducesResponseType(400)]
-        //[ProducesResponseType(422)]
         //[ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ActionResult<CreateNotifyWeaponCommandResponse>> Create([FromBody] CreateNotifyWeaponCommand createNotifyWeaponCommand)
         {

@@ -9,6 +9,6 @@ namespace FPCMMS.Application.Features.NotifyItems.Commands.DeleteNotifyItem
 {
     public class DeleteNotifyItemCommand : IRequest
     {
-        public int NotifyItemId { get; set; }
+        public int Id { get; set; }
     }
 }

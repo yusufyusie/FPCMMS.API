@@ -10,6 +10,6 @@ namespace FPCMMS.Application.DTOs.Notify
     {
         public int Id { get; set; }
         public string WeaponDescription { get; set; }
-        public string Attachment { get; set; }
+        public string Attachments { get; set; }
     }
 }

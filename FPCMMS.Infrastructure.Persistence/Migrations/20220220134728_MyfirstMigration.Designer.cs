@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FPCMMS.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(MaterialDbContext))]
-    [Migration("20220218131711_MyFirstmigration")]
-    partial class MyFirstmigration
+    [Migration("20220220134728_MyfirstMigration")]
+    partial class MyfirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,12 +27,11 @@ namespace FPCMMS.Infrastructure.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("NotifyId");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Attachment")
+                    b.Property<string>("Attachments")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -49,12 +48,11 @@ namespace FPCMMS.Infrastructure.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("NotifyItemId");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("NotifyId")
+                    b.Property<int>("NotifiesId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -70,7 +68,7 @@ namespace FPCMMS.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NotifyId");
+                    b.HasIndex("NotifiesId");
 
                     b.ToTable("NotifyItems");
                 });
@@ -79,7 +77,7 @@ namespace FPCMMS.Infrastructure.Persistence.Migrations
                 {
                     b.HasOne("FPCMMS.Domain.Entities.Notify", "Notify")
                         .WithMany("NotifyItems")
-                        .HasForeignKey("NotifyId")
+                        .HasForeignKey("NotifiesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

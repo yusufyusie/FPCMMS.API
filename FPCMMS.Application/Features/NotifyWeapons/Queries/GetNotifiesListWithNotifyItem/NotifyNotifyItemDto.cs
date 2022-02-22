@@ -8,10 +8,10 @@ namespace FPCMMS.Application.Features.NotifyWeapons.Queries.GetNotifiesListWithN
 {
     public class NotifyNotifyItemDto
     {
-        public int NotifyItemId { get; set; }
+        public int Id { get; set; }
         public string WeaponName { get; set; }
         public string WeaponType { get; set; }
         public int Quantity { get; set; }
-        public int NotifyId { get; set; }
+        public int NotifiesId { get; set; }
     }
 }

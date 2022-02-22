@@ -9,18 +9,18 @@ using FPCMMS.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FPCMMS.API.Controllers
+namespace FPCMMS.API.Controllers.Identity
 {
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/authentication")]
+    [Route("api/v{version:apiVersion}/authentications")]
     [ApiController]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationsController : ControllerBase
     {
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IAuthenticationService _authManager;
-        public AuthenticationController(ILoggerManager logger, IMapper mapper, UserManager<ApplicationUser> userManager, IAuthenticationService authManager)
+        public AuthenticationsController(ILoggerManager logger, IMapper mapper, UserManager<ApplicationUser> userManager, IAuthenticationService authManager)
         {
             _logger = logger;
             _mapper = mapper;

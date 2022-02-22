@@ -22,14 +22,14 @@ namespace FPCMMS.Application.Features.NotifyItems.Queries.GetNotifyDetail
         }
         public async Task<NotifyDetailVm> Handle(GetNotifyDetailQuery request, CancellationToken cancellationToken)
         {
-            var notifyItem = await _notifyIetmRepository.GetByIdAsync(request.NotifyItemId);
+            var notifyItem = await _notifyIetmRepository.GetByIdAsync(request.Id);
             var notifyDetailDto = _mapper.Map<NotifyDetailVm>(notifyItem);
 
-            var notify = await _notifyRepository.GetByIdAsync(notifyItem.NotifyId);
+            var notify = await _notifyRepository.GetByIdAsync(notifyItem.Id);
 
             if (notify == null)
             {
-                throw new NotFoundException(nameof(NotifyItem), request.NotifyItemId);
+                throw new NotFoundException(nameof(NotifyItem), request.Id);
             }
             notifyDetailDto.Notify = _mapper.Map<NotifyWeaponDto>(notify);
 

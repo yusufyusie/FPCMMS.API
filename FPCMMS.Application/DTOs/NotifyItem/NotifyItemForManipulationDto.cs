@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace FPCMMS.Application.DTOs.NotifyItem
 {
     public abstract class NotifyItemForManipulationDto
-    {      
+    {
         public string WeaponName { get; set; }
         public string WeaponType { get; set; }
-        public int Quantity { get; set; }       
+        public int Quantity { get; set; }
     }
 }

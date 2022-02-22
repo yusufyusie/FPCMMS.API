@@ -7,12 +7,9 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FPCMMS.API.Controllers
+namespace FPCMMS.API.Controllers.Notify
 {
-    [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/notifyItems")]
-    [ApiController]
-    public class NotifyItemsController : ControllerBase
+    public class NotifyItemsController : VersionedApiController
     {
         private readonly IMediator _mediator;
         private readonly ILogger<NotifyItemsController> _Logger;
@@ -34,7 +31,7 @@ namespace FPCMMS.API.Controllers
         [HttpGet("{id}", Name = "GetNotifyItemById")]
         public async Task<ActionResult<NotifyDetailVm>> GetNotifyById(int id)
         {
-            var getNotifyDetailQuery = new GetNotifyDetailQuery() { NotifyItemId = id };
+            var getNotifyDetailQuery = new GetNotifyDetailQuery() { Id = id };
             return Ok(await _mediator.Send(getNotifyDetailQuery));
         }
 
@@ -63,7 +60,7 @@ namespace FPCMMS.API.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete(int id)
         {
-            var deleteNotifyItemCommand = new DeleteNotifyItemCommand() { NotifyItemId = id };
+            var deleteNotifyItemCommand = new DeleteNotifyItemCommand() { Id = id };
             await _mediator.Send(deleteNotifyItemCommand);
             return NoContent();
         }
