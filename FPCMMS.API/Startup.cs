@@ -1,13 +1,12 @@
-﻿using FPCMMS.API.ActionFilters;
-using FPCMMS.API.Extensions;
-using FPCMMS.Application.Contracts;
-using FPCMMS.Application.Contracts.Identity;
+﻿using FPCMMS.Application.Contracts.Identity;
 using FPCMMS.Application.Contracts.Service;
 using FPCMMS.Application.Services;
 using FPCMMS.Infrastructure.Identity.Services;
+using FPCMMS.WebAPI.ActionFilters;
+using FPCMMS.WebAPI.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 
-namespace FPCMMS.API
+namespace FPCMMS.WebAPI
 {
     public class Startup
     {

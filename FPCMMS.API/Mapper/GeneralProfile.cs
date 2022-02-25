@@ -3,7 +3,7 @@ using FPCMMS.Application.DTOs;
 using FPCMMS.Application.DTOs.User;
 using FPCMMS.Infrastructure.Identity.Models;
 
-namespace FPCMMS.API.Mapper
+namespace FPCMMS.WebAPI.Mapper
 {
     public class GeneralProfile : Profile
     {

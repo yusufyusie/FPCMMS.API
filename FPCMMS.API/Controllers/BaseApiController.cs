@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FPCMMS.API.Controllers
+namespace FPCMMS.WebAPI.Controllers
 {
     [ApiController]
     public class BaseApiController : ControllerBase

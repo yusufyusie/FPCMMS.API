@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
-using FPCMMS.API.ActionFilters;
-using FPCMMS.Application.Contracts;
 using FPCMMS.Application.Contracts.Identity;
 using FPCMMS.Application.Contracts.Service;
-using FPCMMS.Application.DTOs;
 using FPCMMS.Application.DTOs.User;
 using FPCMMS.Infrastructure.Identity.Models;
+using FPCMMS.WebAPI.ActionFilters;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FPCMMS.API.Controllers.Identity
+namespace FPCMMS.WebAPI.Controllers.Identity
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/authentications")]

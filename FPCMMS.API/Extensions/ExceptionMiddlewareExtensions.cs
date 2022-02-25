@@ -4,7 +4,7 @@ using FPCMMS.Domain.Common.ErrorModel;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 
-namespace FPCMMS.API.Extensions
+namespace FPCMMS.WebAPI.Extensions
 {
     public static class ExceptionMiddlewareExtensions
     {

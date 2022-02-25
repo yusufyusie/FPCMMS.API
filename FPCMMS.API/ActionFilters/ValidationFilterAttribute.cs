@@ -1,9 +1,8 @@
-﻿using FPCMMS.Application.Contracts;
-using FPCMMS.Application.Contracts.Service;
+﻿using FPCMMS.Application.Contracts.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace FPCMMS.API.ActionFilters
+namespace FPCMMS.WebAPI.ActionFilters
 {
     public class ValidationFilterAttribute : IActionFilter
     {

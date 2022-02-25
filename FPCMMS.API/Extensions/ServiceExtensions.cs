@@ -1,14 +1,13 @@
-﻿using FPCMMS.API.Middlewares;
-using FPCMMS.Application.Contracts;
-using FPCMMS.Application.Contracts.Generic;
-using FPCMMS.Application.Contracts.Persistence;
+﻿using FPCMMS.Application.Contracts.Generic;
+using FPCMMS.Application.Contracts.Persistence.Weapon;
 using FPCMMS.Application.Contracts.Service;
-using FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon;
+using FPCMMS.Application.Features.Weapon.NotifyComands;
 using FPCMMS.Application.Services;
 using FPCMMS.Infrastructure.Identity.Contexts;
 using FPCMMS.Infrastructure.Identity.Models;
 using FPCMMS.Infrastructure.Persistence.Contexts;
 using FPCMMS.Infrastructure.Persistence.Repositories;
+using FPCMMS.WebAPI.Middlewares;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -21,7 +20,7 @@ using Newtonsoft.Json;
 using System.Reflection;
 using System.Text;
 
-namespace FPCMMS.API.Extensions
+namespace FPCMMS.WebAPI.Extensions
 {
     public static class ServiceExtensions
     {
@@ -50,8 +49,8 @@ namespace FPCMMS.API.Extensions
                 options.UseSqlServer(configuration.GetConnectionString("MaterialConnection")));
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(BaseRepository<>));
-            services.AddScoped<INotifyWeaponRepository, NotifyWeaponRepository>();
-            services.AddMediatR(typeof(CreateNotifyWeaponCommand).GetTypeInfo().Assembly);
+            services.AddScoped<INotifyRepository, NotifyRepository>();
+            services.AddMediatR(typeof(CreateNotifyCommand).GetTypeInfo().Assembly);
 
             return services;
         }

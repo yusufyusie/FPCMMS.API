@@ -1,10 +1,7 @@
-﻿using FPCMMS.Application.Features.NotifyItems.Commands.CreateNotifyItem;
-using FPCMMS.Application.Features.NotifyItems.Commands.DeleteNotifyItem;
-using FPCMMS.Application.Features.NotifyItems.Commands.UpdateNotifyItem;
-using FPCMMS.Application.Features.NotifyItems.Queries.GetNotifyDetail;
-using FPCMMS.Application.Features.NotifyItems.Queries.GetNotifyList;
+﻿using FPCMMS.Application.Features.Weapon.NotifyDetailCommands;
+using FPCMMS.Application.Features.Weapon.NotifyDetailQueries;
+using FPCMMS.WebAPI.Controllers;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FPCMMS.API.Controllers.Notify
@@ -16,7 +13,7 @@ namespace FPCMMS.API.Controllers.Notify
         public NotifyItemsController(IMediator mediator, ILogger<NotifyItemsController> logger)
         {
             _Logger = logger;
-            _mediator = mediator;   
+            _mediator = mediator;
         }
 
         [HttpGet(Name = "GetAllNotifyItems")]
@@ -38,7 +35,7 @@ namespace FPCMMS.API.Controllers.Notify
         [HttpPost(Name = "AddNotifyItems")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult<CreateNotifyItemCommandResponse>> Create([FromBody] CreateNotifyItemCommand createNotifyItemCommand)
+        public async Task<ActionResult<CreateNotifyDetailCommandResponse>> Create([FromBody] CreateNotifyDetailCommand createNotifyItemCommand)
         {
             var response = await _mediator.Send(createNotifyItemCommand);
             return Ok(response);
@@ -48,7 +45,7 @@ namespace FPCMMS.API.Controllers.Notify
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> Update([FromBody] UpdateNotifyItemCommand updateNotifyItemCommand)
+        public async Task<ActionResult> Update([FromBody] UpdateNotifyDetailCommand updateNotifyItemCommand)
         {
             await _mediator.Send(updateNotifyItemCommand);
             return NoContent();
@@ -60,7 +57,7 @@ namespace FPCMMS.API.Controllers.Notify
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete(int id)
         {
-            var deleteNotifyItemCommand = new DeleteNotifyItemCommand() { Id = id };
+            var deleteNotifyItemCommand = new DeleteNotifyDetailCommand() { Id = id };
             await _mediator.Send(deleteNotifyItemCommand);
             return NoContent();
         }

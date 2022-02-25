@@ -1,9 +1,7 @@
-﻿using FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon;
-using FPCMMS.Application.Features.NotifyWeapons.Commands.DeleteNotifyWeapon;
-using FPCMMS.Application.Features.NotifyWeapons.Commands.UpdateNotifyWeapon;
-using FPCMMS.Application.Features.NotifyWeapons.Queries.GetAllNotifyWeapons;
-using FPCMMS.Application.Features.NotifyWeapons.Queries.GetNotifiesListWithNotifyItem;
-using FPCMMS.Application.Features.NotifyWeapons.Queries.GetNotifyWeaponById;
+﻿
+using FPCMMS.Application.Features.Weapon.NotifyComands;
+using FPCMMS.Application.Features.Weapon.NotifyQueries;
+using FPCMMS.WebAPI.Controllers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,24 +18,24 @@ namespace FPCMMS.API.Controllers.Notify
         }
         [HttpGet("all ", Name = "GetAllNotifyWeapons")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<GetAllNotifyWeaponsViewModel>>> GetAllStoreItems([FromQuery] GetAllNotifyWeaponsParameter filter)
+        public async Task<ActionResult<List<GetAllNotifyVm>>> GetAllStoreItems([FromQuery] GetAllNotifyParameter filter)
         {
 
-            var dtos = await _mediator.Send(new GetAllNotifyWeaponsQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber });
+            var dtos = await _mediator.Send(new GetAllNotifyQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber });
             _Logger.LogInformation("Getting list of NotifyWeapons");
             return Ok(dtos);
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<GetAllNotifyWeaponsViewModel>>> GetById(int id)
+        public async Task<ActionResult<List<GetAllNotifyVm>>> GetById(int id)
         {
-            return Ok(await _mediator.Send(new GetNotifyWeaponsByIdQuery { Id = id }));
+            return Ok(await _mediator.Send(new GetNotifyByIdQuery { Id = id }));
         }
 
         [HttpGet("allwithnotifyitems", Name = "GetNotifiesWithNotifyItems")]
         [ProducesDefaultResponseType]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<NotifyNotifyItemListVm>>> GetNotifiesWithNotifyItems(bool includeHistory)
-        {            
+        {
             var dtos = await _mediator.Send(new GetNotifesListWithNotifyItemsQuery() { IncludeHistory = includeHistory });
             return Ok(dtos);
         }
@@ -45,7 +43,7 @@ namespace FPCMMS.API.Controllers.Notify
 
         [HttpPost(Name = "AddNotifyWeapon")]
         //[ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<ActionResult<CreateNotifyWeaponCommandResponse>> Create([FromBody] CreateNotifyWeaponCommand createNotifyWeaponCommand)
+        public async Task<ActionResult<CreateNotifyCommandResponse>> Create([FromBody] CreateNotifyCommand createNotifyWeaponCommand)
         {
             var response = await _mediator.Send(createNotifyWeaponCommand);
             return Ok(response);
@@ -54,9 +52,9 @@ namespace FPCMMS.API.Controllers.Notify
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> Update([FromBody] UpdateNotifyWeaponCommand updateNotifyWeaponCommand)
+        public async Task<ActionResult> Update([FromBody] UpdateNotifyCommand updateNotifyCommand)
         {
-            await _mediator.Send(updateNotifyWeaponCommand);
+            await _mediator.Send(updateNotifyCommand);
             return NoContent();
         }
         [HttpDelete("{id}", Name = "DeleteNotifyWeapon")]
@@ -65,7 +63,7 @@ namespace FPCMMS.API.Controllers.Notify
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete(int id)
         {
-            var deleteNotifyWeaponCommand = new DeleteNotifyWeaponCommand()
+            var deleteNotifyWeaponCommand = new DeleteNotifyCommand()
             { Id = id };
             await _mediator.Send(deleteNotifyWeaponCommand);
             return NoContent();

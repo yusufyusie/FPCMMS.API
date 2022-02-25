@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
-using FPCMMS.Application.DTOs;
 using FPCMMS.Application.DTOs.Notify;
 using FPCMMS.Application.DTOs.NotifyItem;
-using FPCMMS.Application.Features.NotifyItems.Commands.CreateNotifyItem;
-using FPCMMS.Application.Features.NotifyItems.Commands.UpdateNotifyItem;
-using FPCMMS.Application.Features.NotifyItems.Queries.GetNotifyDetail;
-using FPCMMS.Application.Features.NotifyItems.Queries.GetNotifyList;
-using FPCMMS.Application.Features.NotifyWeapons.Commands.CreateNotifyWeapon;
-using FPCMMS.Application.Features.NotifyWeapons.Commands.UpdateNotifyWeapon;
-using FPCMMS.Application.Features.NotifyWeapons.Queries.GetAllNotifyWeapons;
-using FPCMMS.Application.Features.NotifyWeapons.Queries.GetNotifiesListWithNotifyItem;
+using FPCMMS.Application.Features.Weapon.NotifyComands;
+using FPCMMS.Application.Features.Weapon.NotifyDetailCommands;
+using FPCMMS.Application.Features.Weapon.NotifyDetailQueries;
+using FPCMMS.Application.Features.Weapon.NotifyQueries;
 using FPCMMS.Domain.Entities;
 
 namespace FPCMMS.Application.Mappings
@@ -19,22 +14,22 @@ namespace FPCMMS.Application.Mappings
         public MappingProfile()
         {
             CreateMap<Notify, NotifyWeaponDto>();
-            CreateMap<Notify, NotifyWeaponForCreationDto>().ReverseMap();
-            CreateMap<Notify, CreateNotifyWeaponCommand>().ReverseMap();
+            CreateMap<Notify, NotifyForCreationDto>().ReverseMap();
+            CreateMap<Notify, CreateNotifyCommand>().ReverseMap();
 
-            CreateMap<GetAllNotifyWeaponsQuery, GetAllNotifyWeaponsParameter>();
-            CreateMap<Notify, UpdateNotifyWeaponCommand>().ReverseMap();
+            CreateMap<GetAllNotifyQuery, GetAllNotifyParameter>();
+            CreateMap<Notify, UpdateNotifyCommand>().ReverseMap();
             CreateMap<Notify, NotifyWeaponForUpdateDto>();
-            CreateMap<Notify, GetAllNotifyWeaponsViewModel>().ReverseMap();
+            CreateMap<Notify, GetAllNotifyVm>().ReverseMap();
             CreateMap<Notify, NotifyListVm>();
             CreateMap<Notify, NotifyNotifyItemListVm>();
 
             CreateMap<NotifyItem, NotifyItemDto>();
             CreateMap<NotifyItem, NotifyItemForCreationDto>().ReverseMap();
-            CreateMap<NotifyItem, CreateNotifyItemCommand>().ReverseMap();
+            CreateMap<NotifyItem, CreateNotifyDetailCommand>().ReverseMap();
             CreateMap<NotifyItem, NotifyListVm>().ReverseMap();
-            CreateMap<NotifyItem, CreateNotifyItemCommand>().ReverseMap();
-            CreateMap<NotifyItem, UpdateNotifyItemCommand>().ReverseMap();
+            CreateMap<NotifyItem, CreateNotifyDetailCommand>().ReverseMap();
+            CreateMap<NotifyItem, UpdateNotifyDetailCommand>().ReverseMap();
             CreateMap<NotifyItem, NotifyDetailVm>().ReverseMap();
             CreateMap<NotifyItem, NotifyNotifyItemDto>().ReverseMap();
 

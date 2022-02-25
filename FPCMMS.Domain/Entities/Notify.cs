@@ -1,15 +1,11 @@
-﻿using FPCMMS.Domain.Common;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace FPCMMS.Domain.Entities
+﻿namespace FPCMMS.Domain.Entities
 {
     public class Notify
     {
 
-        //[Column("NotifyId")]
-        public int Id { get; set; }       
+        public int Id { get; set; }
         public string WeaponDescription { get; set; }
-        public string Attachments { get; set; }
+        public string? Attachments { get; set; }
         public ICollection<NotifyItem> NotifyItems { get; set; }
     }
 }

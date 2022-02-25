@@ -1,5 +1,5 @@
 ﻿
-namespace FPCMMS.API
+namespace FPCMMS.WebAPI
 {
     public class Program
     {

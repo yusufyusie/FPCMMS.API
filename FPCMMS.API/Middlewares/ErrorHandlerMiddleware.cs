@@ -3,7 +3,7 @@ using FPCMMS.Application.Responses;
 using System.Net;
 using System.Text.Json;
 
-namespace FPCMMS.API.Middlewares
+namespace FPCMMS.WebAPI.Middlewares
 {
     public class ErrorHandlerMiddleware
     {

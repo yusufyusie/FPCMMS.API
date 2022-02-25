@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using NSwag.Annotations;
 using System.Net;
 
-namespace FPCMMS.API.Controllers.Identity
+namespace FPCMMS.WebAPI.Controllers.Identity
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/users")]
