@@ -1,13 +1,14 @@
-﻿
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using FPCMMS.Application.Features.Weapon.NotifyComands;
 using FPCMMS.Application.Features.Weapon.NotifyQueries;
-using FPCMMS.WebAPI.Controllers;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
-namespace FPCMMS.API.Controllers.Notify
+namespace FPCMMS.WebAPI.Controllers.Notify
 {
-    public class NotifiesController :  VersionedApiController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class NotifiesController : VersionedApiController
     {
         private readonly IMediator _mediator;
         private readonly ILogger<NotifiesController> _Logger;
@@ -71,3 +72,4 @@ namespace FPCMMS.API.Controllers.Notify
         }
     }
 }
+

@@ -1,8 +1,8 @@
-﻿using FPCMMS.Application.Features.Weapon.NotifyDetailCommands;
-using FPCMMS.Application.Features.Weapon.NotifyDetailQueries;
-using FPCMMS.WebAPI.Controllers;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using FPCMMS.WebAPI.Controllers;
+using FPCMMS.Application.Features.Weapon.NotifyDetailQueries;
+using FPCMMS.Application.Features.Weapon.NotifyDetailCommands;
 
 namespace FPCMMS.API.Controllers.Notify
 {

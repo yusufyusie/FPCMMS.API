@@ -1,13 +1,8 @@
-﻿using AutoMapper;
-using FPCMMS.Application.Contracts.Persistence.Weapon;
-using FPCMMS.Application.Parameters;
+﻿using MediatR;
+using AutoMapper;
 using FPCMMS.Application.Responses;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FPCMMS.Application.Parameters;
+using FPCMMS.Application.Contracts.Persistence.Weapon;
 
 namespace FPCMMS.Application.Features.Weapon.NotifyQueries
 {
@@ -17,7 +12,7 @@ namespace FPCMMS.Application.Features.Weapon.NotifyQueries
         public int PageSize { get; set; }
         public class GetAllNotifyWeaponsHandler : IRequestHandler<GetAllNotifyQuery, PagedResponse<IEnumerable<GetAllNotifyVm>>>
         {
-            private readonly INotifyRepository _notfiyWeaponrepostory;            
+            private readonly INotifyRepository _notfiyWeaponrepostory;
             private readonly IMapper _mapper;
             public GetAllNotifyWeaponsHandler(INotifyRepository notifyWeaponRepository, IMapper mapper)
             {

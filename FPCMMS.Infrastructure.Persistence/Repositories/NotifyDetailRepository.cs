@@ -9,7 +9,6 @@ namespace FPCMMS.Infrastructure.Persistence.Repositories
         public NotifyDetailRepository(MaterialDbContext dbContext) : base(dbContext)
         {
 
-        }        
-        
+        }
     }
 }
